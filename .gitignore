@@ -1,0 +1,10 @@
+.DS_Store
+ecosystem.config.js
+.cache/
+node_modules
+.env
+.env.*
+public/
+.coveralls.yml
+.nyc_output
+coverage

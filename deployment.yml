@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ramapi
+  labels:
+    app.kubernetes.io/name: ramapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ramapi
+  template:
+    metadata:
+      labels:
+        app: ramapi
+    spec:
+      containers:
+        - name: app
+          image: ramapi
+          env:
+          - name: NODE_ENV
+            value: "production"
+          - name: DATABASE
+            value: "mongodb://root:XrVv3kXhDj@mongodb:27017/rickmorty?authSource=admin"
+          ports:
+            - containerPort: 8080
+              name: ramapi-port
+          imagePullPolicy: Never
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: ramapi-service
+spec:
+  selector:
+    app: ramapi
+  ports:
+    - protocol: TCP
+      port: 8082
+      targetPort: ramapi-port
+
