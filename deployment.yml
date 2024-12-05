@@ -16,12 +16,12 @@ spec:
     spec:
       containers:
         - name: app
-          image: ramapi
+          image: rick-and-morty-api
           env:
           - name: NODE_ENV
             value: "production"
           - name: DATABASE
-            value: "mongodb://root:XrVv3kXhDj@mongodb:27017/rickmorty?authSource=admin"
+            value: "mongodb://root:XrVv3kXhDj@mongodb.default.svc.cluster.local:27017/rickmorty?authSource=admin"
           ports:
             - containerPort: 8080
               name: ramapi-port
